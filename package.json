@@ -1,5 +1,11 @@
 {
   "name": "git-ssh-update-version",
   "version": "0.1.2",
-  "main": "index.js"
+  "main": "index.js",
+  "bin": {
+    "git-ssh-update-version": "./index.js"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
 }

@@ -1,6 +1,10 @@
+#!/usr/bin/env node
+
 const { spawn } = require('child_process');
-var package = require('./package.json')
-var gitURL = package.dependencies["kyc360"]
+var cwd = process.cwd();
+console.log('Current folder: ' + cwd);
+var package = require(cwd + '/package.json')
+var packageName = process.argv[2]
 
 var getAllVersions = function(URL) {
     return new Promise((res, rej) => {
@@ -53,15 +57,22 @@ var installNewVersion = function(URL, version) {
     })
 }
 
-if (gitURL) {
-    var URL = gitURL.split("#")[0];
-    console.log('Fetch all available versions of ' + URL)
-    getAllVersions(URL).then((vers) => {
-        var latest = vers[vers.length - 1]
-        var semver = latest.match(/v(.*)/)[1]
-        console.log('Install new version: ' + semver)
-        return installNewVersion(URL, semver)
-    }).catch((err) => {
-        console.log(err)
-    })
+if (packageName && package.dependencies) {
+    console.log('Package name: ' + packageName)
+    var gitURL = package.dependencies[packageName]
+    if (gitURL) {
+        var URL = gitURL.split("#")[0];
+        console.log('Fetch all available versions of ' + URL)
+        getAllVersions(URL).then((vers) => {
+            var latest = vers[vers.length - 1]
+            var semver = latest.match(/v(.*)/)[1]
+            console.log('Install new version: ' + semver)
+            return installNewVersion(URL, semver)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+} else {
+    console.log('Usage: git-ssh-update-version <package name>')
+    console.log('You must run command from project root folder where you can see package.json file')
 }

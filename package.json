@@ -12,5 +12,9 @@
     "name": "Vitalii Rakytin",
     "email": "vetalrakitin@gmail.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vetalrakitin/git-ssh-update-version.git"
+  }
 }

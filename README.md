@@ -1,8 +1,8 @@
 # git-ssh-update-version
 Update version package at package.json installed via git+ssh protocol
 
-##Usage 
+## Usage 
 `git-ssh-update-version <package name>`
 
-##Install
+## Install
 `npm i git-ssh-update-version -g`

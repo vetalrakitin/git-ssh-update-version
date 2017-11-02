@@ -1,5 +1,5 @@
 {
-  "name": "git+ssh-update-version",
+  "name": "git-ssh-update-version",
   "version": "0.1.1",
   "main": "index.js"
 }
